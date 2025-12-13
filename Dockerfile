@@ -14,6 +14,9 @@ COPY src ./src
 # Build the application
 RUN mvn clean package -DskipTests
 
+# List target directory contents for debugging
+RUN ls -la /app/target/
+
 # Runtime stage
 FROM eclipse-temurin:17-jre-alpine
 
