@@ -86,6 +86,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
           <mainClass>mx.ipn.escom.labreservas.LabReservasApplication</mainClass>
+          <executable>true</executable>
         </configuration>
       </plugin>
       <plugin>
