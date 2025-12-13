@@ -4,8 +4,6 @@ import mx.ipn.escom.labreservas.model.Laboratorio;
 import mx.ipn.escom.labreservas.repository.LaboratorioRepository;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.transaction.Transactional;
-
 import java.util.List;
 
 @RestController
