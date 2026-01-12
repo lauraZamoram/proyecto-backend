@@ -34,6 +34,14 @@ spring:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
 
+# ... (Tu configuración actual de datasource, jpa, sql, mail, etc. queda igual) ...
+
 # server port (cambiar si es necesario)
 server:
-  port: 8080
+  port: ${SERVER_PORT:5000} # AHORA USARÁ 5000 O LA VARIABLE DE ENTORNO SERVER_PORT
+
+# Configuración de Springdoc (Añade esta nueva sección)
+springdoc:
+  server:
+    - url: ${API_BASE_URL:http://localhost:5000}
+      description: URL base para Swagger

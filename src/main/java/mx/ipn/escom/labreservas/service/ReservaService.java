@@ -41,12 +41,8 @@ public class ReservaService {
         this.mailSender = mailSender;
     }
 
-    // =====================================================
-    // CREAR RESERVA + ENVIAR CORREO CON PDF
-    // =====================================================
     public Reserva crearReserva(Reserva r) {
 
-        // 🔹 Cargar entidades reales desde BD
         Usuario usuario = usuarioRepository.findById(
             r.getUsuario().getIdUsuario()
         ).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -55,14 +51,11 @@ public class ReservaService {
             r.getLaboratorio().getIdLaboratorio()
         ).orElseThrow(() -> new RuntimeException("Laboratorio no encontrado"));
 
-        // 🔹 Asignar entidades completas
         r.setUsuario(usuario);
         r.setLaboratorio(laboratorio);
 
-        // 🔹 Guardar reserva
         Reserva saved = reservaRepository.save(r);
 
-        // 🔹 Enviar correo con PDF adjunto
         try {
             byte[] pdfBytes = generarReporteReservaPdf(saved.getIdReserva());
             System.out.println("PDF generado, tamaño bytes: " + pdfBytes.length);
@@ -89,7 +82,6 @@ public class ReservaService {
                 false
             );
 
-            // 📎 Adjuntar PDF
             helper.addAttachment(
                 "reserva_" + saved.getIdReserva() + ".pdf",
                 new ByteArrayResource(pdfBytes)

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/reservas")
 public class ReservaController {
@@ -49,4 +50,7 @@ public class ReservaController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdf);
     }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) { reservaRepository.deleteById(id); }
 }

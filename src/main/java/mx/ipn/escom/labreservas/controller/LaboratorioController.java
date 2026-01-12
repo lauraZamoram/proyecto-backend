@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/laboratorios")
 public class LaboratorioController {
@@ -20,4 +21,7 @@ public class LaboratorioController {
 
     @GetMapping("/{id}")
     public Laboratorio obtener(@PathVariable Integer id) { return laboratorioRepository.findById(id).orElse(null); }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) { laboratorioRepository.deleteById(id); }
 }

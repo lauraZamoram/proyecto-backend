@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/equipos")
 public class EquipoController {
@@ -20,4 +21,7 @@ public class EquipoController {
 
     @GetMapping("/{id}")
     public Equipo obtener(@PathVariable Integer id) { return equipoRepository.findById(id).orElse(null); }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id) { equipoRepository.deleteById(id); }
 }
